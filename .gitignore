@@ -1,0 +1,5 @@
+SpamDetector/build/*
+SpamDetector/build.xml
+SpamDetector/manifest.xml
+SpamDetector/manifest.mf
+SpamDetector/nbproject/*
