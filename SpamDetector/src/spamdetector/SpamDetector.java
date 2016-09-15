@@ -7,7 +7,7 @@ package spamdetector;
 
 /**
  *
- * @author Kak Wimus
+ * @author Kak Wimus & Ivan & Tio
  */
 public class SpamDetector {
 
@@ -15,6 +15,7 @@ public class SpamDetector {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("Hello World");
         // TODO code application logic here
     }
     
