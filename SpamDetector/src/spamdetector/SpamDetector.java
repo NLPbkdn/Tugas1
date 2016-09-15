@@ -7,7 +7,7 @@ package spamdetector;
 
 /**
  *
- * @author Hp
+ * @author Kak Wimus
  */
 public class SpamDetector {
 
