@@ -108,21 +108,17 @@ public class IndexTest {
 	 * Main method. It is an example of the usage of this class.
 	 * @param args Command-line arguments: fileData and fileModel.
 	 */
-	public static void main(String[] args) {
+	public void IndexARFF(String source, String dest) {
 	
 		long time1, time2;
 		IndexTest indexer = new IndexTest();
-		if (args.length < 2)
-			System.out.println("Usage: java IndexTest <fileInput> <fileOutput>");
-		else {
-			indexer.loadARFF(args[0]);
+			indexer.loadARFF(source);
 			time1 = System.currentTimeMillis();
 			System.out.println("Started indexing at: " + time1);
 			indexer.index();
 			time2 = System.currentTimeMillis();
 			System.out.println("Finished indexing at: " + time2);
 			System.out.println("Total indexing time: " + (time2-time1));
-			indexer.saveARFF(args[1]);
-		}
+			indexer.saveARFF(dest);
 	}
 }

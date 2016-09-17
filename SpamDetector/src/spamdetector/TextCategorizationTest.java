@@ -1,3 +1,5 @@
+package spamdetector;
+
 import weka.core.*;
 import weka.core.converters.*;
 import weka.classifiers.trees.*;
@@ -26,6 +28,7 @@ public class TextCategorizationTest {
   public static void main(String[] args) throws Exception {
     // convert the directory into a dataset
     TextDirectoryLoader loader = new TextDirectoryLoader();
+    System.out.println(args[0]);
     loader.setDirectory(new File(args[0]));
     Instances dataRaw = loader.getDataSet();
     //System.out.println("\n\nImported data:\n\n" + dataRaw);
