@@ -1,4 +1,4 @@
-@relation 'newArff-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.NullStemmer-stopwords-handlerweka.core.stopwords.Null-M1-O-tokenizerweka.core.tokenizers.NGramTokenizer -max 1 -min 1 -delimiters \\W'
+@relation 'newArff-weka.filters.unsupervised.attribute.StringToWordVector-R1-W1000000-prune-rate-1.0-N0-L-stemmerweka.core.stemmers.NullStemmer-M1-O-tokenizerweka.core.tokenizers.NGramTokenizer -delimiters \\W -max 1 -min 1'
 
 @attribute class {spam,NotSpam}
 @attribute 0 numeric

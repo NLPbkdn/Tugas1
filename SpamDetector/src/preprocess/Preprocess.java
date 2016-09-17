@@ -71,8 +71,8 @@ public class Preprocess {
             inputReader = new BufferedReader(new FileReader("datatest.arff"));
             Instances data = new Instances(inputReader);
             int index = 0;
-            while (index < data.size()) {
-                String all = data.get(index).toString();
+            while (index < data.numInstances()) {
+                String all = data.instance(index).toString();
                 String[] label = all.split("\',");
                 String words = label[0];
                 //System.out.println(words);
