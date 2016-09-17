@@ -19,6 +19,10 @@ import weka.classifiers.trees.J48;
 import weka.core.FastVector;
 import weka.core.Instances;
 
+import IndonesianNLP.*;
+import Element.Element;
+import java.util.ArrayList;
+import preprocess.*;
 
 /**
  *
@@ -38,12 +42,17 @@ public class SpamDetector {
     
     public static void preProcessing(String filename) throws IOException{
         BufferedReader datafile = readDataFile(filename);
-        String line = datafile.readLine();
+        String line = "";
+
+        line = datafile.readLine();
         String word = line.substring(0,line.lastIndexOf(","));
-        String label = line.substring(line.lastIndexOf(",")+1);
-        System.out.println("Word = " + word);
-        System.out.println("Label = " + label);
+        IndonesianSentenceTokenizer tokenizer = new IndonesianSentenceTokenizer();
+        System.out.println(tokenizer.tokenizeSentence(word));
         
+        IndonesianSentenceDetector detector = new IndonesianSentenceDetector();
+        System.out.println(detector.splitSentence(word));
+    
+    
     }
     
     public static void createModel(){
@@ -127,8 +136,9 @@ public class SpamDetector {
 //                                + String.format("%.2f%%", accuracy)
 //                                + "\n---------------------------------");
 //        }
-
-            preProcessing("datatest.csv");
+            Preprocess P = new Preprocess("datatest.csv");
+            ArrayList<Element> datatrain = P.processing();
+//            preProcessing("datatest.csv");
 
     }
 }
