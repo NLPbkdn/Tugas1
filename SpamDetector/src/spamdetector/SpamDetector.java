@@ -91,7 +91,7 @@ public class SpamDetector {
         BufferedReader datafile = readDataFile("tio.arff");
         Instances data = new Instances(datafile);
         data.setClassIndex(0);
-
+        System.out.println(data.classAttribute().toString());
         // Do 10-split cross validation
         Instances[][] split = crossValidationSplit(data, 10);
 
@@ -113,12 +113,13 @@ public class SpamDetector {
                 // For each training-testing split pair, train and test the classifier
                 for (int i = 0; i < trainingSplits.length; i++) {
                     try {
+                        System.out.println("Building for training Split : " + i);
                         Evaluation validation = classify(models[j], trainingSplits[i], testingSplits[i]);
 
                         predictions.appendElements(validation.predictions());
 
                         // Uncomment to see the summary for each training-testing pair.
-                        //System.out.println(models[j].toString());
+                        System.out.println(models[j].toString());
                     } catch (Exception ex) {
                         Logger.getLogger(SpamDetector.class.getName()).log(Level.SEVERE, null, ex);
                     }
