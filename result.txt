@@ -1,0 +1,77 @@
+Test mode:10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+CART Decision Tree
+
+www < 0.5
+|  hub < 0.5
+|  |  n < 0.5
+|  |  |  bpkb < 0.5
+|  |  |  |  tlp < 0.5
+|  |  |  |  |  minat < 0.5
+|  |  |  |  |  |  pulsa < 0.5
+|  |  |  |  |  |  |  0 < 0.5
+|  |  |  |  |  |  |  |  jual < 0.5
+|  |  |  |  |  |  |  |  |  gratis < 0.5
+|  |  |  |  |  |  |  |  |  |  no < 0.5
+|  |  |  |  |  |  |  |  |  |  |  pin < 0.5
+|  |  |  |  |  |  |  |  |  |  |  |  858 < 0.5
+|  |  |  |  |  |  |  |  |  |  |  |  |  tunai < 0.5
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  kta < 0.5
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  bali < 0.5: NotSpam(460.0/51.0)
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  |  bali >= 0.5: spam(3.0/0.0)
+|  |  |  |  |  |  |  |  |  |  |  |  |  |  kta >= 0.5: spam(4.0/1.0)
+|  |  |  |  |  |  |  |  |  |  |  |  |  tunai >= 0.5: spam(4.0/0.0)
+|  |  |  |  |  |  |  |  |  |  |  |  858 >= 0.5: spam(4.0/0.0)
+|  |  |  |  |  |  |  |  |  |  |  pin >= 0.5: spam(6.0/2.0)
+|  |  |  |  |  |  |  |  |  |  no >= 0.5
+|  |  |  |  |  |  |  |  |  |  |  hp < 0.5
+|  |  |  |  |  |  |  |  |  |  |  |  skrng < 0.5: NotSpam(15.0/5.0)
+|  |  |  |  |  |  |  |  |  |  |  |  skrng >= 0.5: spam(5.0/0.0)
+|  |  |  |  |  |  |  |  |  |  |  hp >= 0.5: spam(5.0/0.0)
+|  |  |  |  |  |  |  |  |  gratis >= 0.5
+|  |  |  |  |  |  |  |  |  |  unlimited < 0.5: spam(11.0/2.0)
+|  |  |  |  |  |  |  |  |  |  unlimited >= 0.5: NotSpam(3.0/0.0)
+|  |  |  |  |  |  |  |  jual >= 0.5: spam(8.0/1.0)
+|  |  |  |  |  |  |  0 >= 0.5: spam(9.0/1.0)
+|  |  |  |  |  |  pulsa >= 0.5
+|  |  |  |  |  |  |  promo < 0.5: spam(21.0/8.0)
+|  |  |  |  |  |  |  promo >= 0.5: NotSpam(3.0/0.0)
+|  |  |  |  |  minat >= 0.5: spam(13.0/0.0)
+|  |  |  |  tlp >= 0.5: spam(19.0/0.0)
+|  |  |  bpkb >= 0.5: spam(23.0/0.0)
+|  |  n >= 0.5: spam(38.0/2.0)
+|  hub >= 0.5: spam(122.0/9.0)
+www >= 0.5: spam(182.0/4.0)
+
+Number of Leaf Nodes: 21
+
+Size of the Tree: 41
+
+Time taken to build model: 115.22 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances         902               86.3985 %
+Incorrectly Classified Instances       142               13.6015 %
+Kappa statistic                          0.7282
+Mean absolute error                      0.1759
+Root mean squared error                  0.3383
+Relative absolute error                 35.1974 %
+Root relative squared error             67.6773 %
+Total Number of Instances             1044     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.841     0.112      0.887     0.841     0.863      0.894    spam
+                 0.888     0.159      0.842     0.888     0.865      0.894    NotSpam
+Weighted Avg.    0.864     0.135      0.865     0.864     0.864      0.894
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 448  85 |   a = spam
+  57 454 |   b = NotSpam
