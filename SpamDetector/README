@@ -1,0 +1,15 @@
+README
+======
+
+Here is an example command-line that turns the HTML documents listed below the
+"text_example" directory into a single ARFF file "text_example.arff". 
+TextDirectoryLoader uses the sub-directories in the "text_example" directory as
+class labels for the documents stored in there.
+
+java weka.core.converters.TextDirectoryLoader -dir text_example > text_example.arff
+
+The generated ARFF file can be further processed with the StringToWordVector
+(package weka.filters.unsupervised.attribute).
+
+
+Author: FracPete (fracpete at waikato dot ac dot nz)
