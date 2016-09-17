@@ -11,6 +11,7 @@ import java.io.FileReader;
 import Element.Element;
 import java.util.ArrayList;
 import IndonesianNLP.*;
+import com.opencsv.CSVReader;
 import java.io.IOException;
 
 /**
@@ -46,11 +47,14 @@ public class Preprocess {
         IndonesianSentenceFormalization formalizer = new IndonesianSentenceFormalization();
         IndonesianSentenceTokenizer tokenizer = new IndonesianSentenceTokenizer();
         IndonesianStemmer stemmer = new IndonesianStemmer();
-        
-        while ((line = datafile.readLine()) != null){
+
+        CSVReader reader = new CSVReader(new FileReader("datatest.csv"));
+        String [] nextLine;
+        while ((nextLine = reader.readNext()) != null) {
             System.out.println(line);
-            String words = line.substring(0,line.lastIndexOf(","));
-            String label = line.substring(line.lastIndexOf(",")+1);
+            String words = nextLine[0];
+            String label = nextLine[1];
+            System.out.println(words+ ":" + label);
             //NORMALIZE SENTENCES
             words = formalizer.normalizeSentence(words);
             //DELETE STOP WORDS
@@ -58,7 +62,7 @@ public class Preprocess {
             words = formalizer.deleteStopword(words).toLowerCase();
             //STEM SENTENCES
             words = stemmer.stemSentence(words);
-            
+
             //add element to elements
             elements.add(new Element(words,label));
         }

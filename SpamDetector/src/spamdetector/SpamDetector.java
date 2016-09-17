@@ -22,6 +22,7 @@ import weka.core.Instances;
 import IndonesianNLP.*;
 import Element.Element;
 import java.util.ArrayList;
+import java.util.HashMap;
 import preprocess.*;
 
 /**
@@ -139,6 +140,8 @@ public class SpamDetector {
             Preprocess P = new Preprocess("datatest.csv");
             ArrayList<Element> datatrain = P.processing();
 //            preProcessing("datatest.csv");
-
+            Attributes A = new Attributes(datatrain);
+            HashMap<String, Integer> attributes = A.createAttributes();
+            A.setValue();
     }
 }
