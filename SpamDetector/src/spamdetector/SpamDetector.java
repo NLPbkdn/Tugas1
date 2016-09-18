@@ -16,7 +16,6 @@ import weka.classifiers.rules.DecisionTable;
 import weka.classifiers.rules.PART;
 import weka.classifiers.trees.DecisionStump;
 import weka.classifiers.trees.J48;
-import weka.classifiers.trees.SimpleCart;
 import weka.core.FastVector;
 import weka.core.Instances;
 
@@ -30,15 +29,8 @@ import preprocess.*;
  * @author Kak Wimus & Ivan & Tio
  */
 public class SpamDetector {
-    
-    public static Evaluation classify(Classifier model,Instances trainingSet, Instances testingSet) throws Exception {
-        Evaluation evaluation = new Evaluation(trainingSet);
-        model.buildClassifier(trainingSet);
-        evaluation.evaluateModel(model, testingSet);
-        return evaluation;
-    }
-    
-    private static BufferedReader readDataFile(String filename) {
+
+    public static BufferedReader readDataFile(String filename) {
         BufferedReader inputReader = null;
         try {
                 inputReader = new BufferedReader(new FileReader(filename));
@@ -46,6 +38,32 @@ public class SpamDetector {
                 System.err.println("File not found: " + filename);
         }
         return inputReader;
+    }
+    
+    public static void preProcessing(String filename) throws IOException{
+        BufferedReader datafile = readDataFile(filename);
+        String line = "";
+
+        line = datafile.readLine();
+        String word = line.substring(0,line.lastIndexOf(","));
+        IndonesianSentenceTokenizer tokenizer = new IndonesianSentenceTokenizer();
+        System.out.println(tokenizer.tokenizeSentence(word));
+        
+        IndonesianSentenceDetector detector = new IndonesianSentenceDetector();
+        System.out.println(detector.splitSentence(word));
+    
+    
+    }
+    
+    public static void createModel(){
+    
+    }
+
+    public static Evaluation classify(Classifier model,Instances trainingSet, Instances testingSet) throws Exception {
+        Evaluation evaluation = new Evaluation(trainingSet);
+        model.buildClassifier(trainingSet);
+        evaluation.evaluateModel(model, testingSet);
+        return evaluation;
     }
  
     public static double calculateAccuracy(FastVector predictions) {
@@ -73,50 +91,54 @@ public class SpamDetector {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        BufferedReader datafile = readDataFile("weather.nominal.arff");
-
-        Instances data = new Instances(datafile);
-        data.setClassIndex(data.numAttributes() - 1);
-
-        // Do 10-split cross validation
-        Instances[][] split = crossValidationSplit(data, 10);
-
-        // Separate split into training and testing arrays
-        Instances[] trainingSplits = split[0];
-        Instances[] testingSplits = split[1];
-
-        // Use a set of classifiers
-        Classifier[] models = { 
-            new SimpleCart()
-        };
-
-        // Run for each model
-        for (int j = 0; j < models.length; j++) {
-
-                // Collect every group of predictions for current model in a FastVector
-                FastVector predictions = new FastVector();
-
-                // For each training-testing split pair, train and test the classifier
-                for (int i = 0; i < trainingSplits.length; i++) {
-                        Evaluation validation = classify(models[j], trainingSplits[i], testingSplits[i]);
-
-                        predictions.appendElements(validation.predictions());
-
-                        // Uncomment to see the summary for each training-testing pair.
-                        //System.out.println(models[j].toString());
-                }
-
-                // Calculate overall accuracy of current classifier on all splits
-                double accuracy = calculateAccuracy(predictions);
-
-                // Print current classifier's name and accuracy in a complicated,
-                // but nice-looking way.
-                System.out.println("Accuracy of " + models[j].getClass().getSimpleName() + ": "
-                                + String.format("%.2f%%", accuracy)
-                                + "\n---------------------------------");
-        }
-//            Preprocess P = new Preprocess("datatest.csv");
-//            ArrayList<Element> datatrain = P.processing();
+//        BufferedReader datafile = readDataFile("weather.nominal.arff");
+//
+//        Instances data = new Instances(datafile);
+//        data.setClassIndex(data.numAttributes() - 1);
+//
+//        // Do 10-split cross validation
+//        Instances[][] split = crossValidationSplit(data, 10);
+//
+//        // Separate split into training and testing arrays
+//        Instances[] trainingSplits = split[0];
+//        Instances[] testingSplits = split[1];
+//
+//        // Use a set of classifiers
+//        Classifier[] models = { 
+//                        new J48(), // a decision tree
+//                        new PART(), 
+//                        new DecisionTable(),//decision table majority classifier
+//                        new DecisionStump() //one-level decision tree
+//        };
+//
+//        // Run for each model
+//        for (int j = 0; j < models.length; j++) {
+//
+//                // Collect every group of predictions for current model in a FastVector
+//                FastVector predictions = new FastVector();
+//
+//                // For each training-testing split pair, train and test the classifier
+//                for (int i = 0; i < trainingSplits.length; i++) {
+//                        Evaluation validation = classify(models[j], trainingSplits[i], testingSplits[i]);
+//
+//                        predictions.appendElements(validation.predictions());
+//
+//                        // Uncomment to see the summary for each training-testing pair.
+//                        //System.out.println(models[j].toString());
+//                }
+//
+//                // Calculate overall accuracy of current classifier on all splits
+//                double accuracy = calculateAccuracy(predictions);
+//
+//                // Print current classifier's name and accuracy in a complicated,
+//                // but nice-looking way.
+//                System.out.println("Accuracy of " + models[j].getClass().getSimpleName() + ": "
+//                                + String.format("%.2f%%", accuracy)
+//                                + "\n---------------------------------");
+//        }
+            Preprocess P = new Preprocess("datatest.csv");
+            ArrayList<Element> datatrain = P.processing();
+//            preProcessing("datatest.csv");
 
     }
 }
