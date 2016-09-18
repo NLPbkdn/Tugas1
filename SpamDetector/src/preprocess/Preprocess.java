@@ -11,15 +11,12 @@ import java.io.FileReader;
 import Element.Element;
 import java.util.ArrayList;
 import IndonesianNLP.*;
-import com.opencsv.CSVReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import weka.core.Instances;
-import weka.core.converters.TextDirectoryLoader;
 
 /**
  *
