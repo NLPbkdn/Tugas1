@@ -3,3 +3,5 @@ SpamDetector/build.xml
 SpamDetector/manifest.xml
 SpamDetector/manifest.mf
 SpamDetector/nbproject/*
+SpamDetector/text_example/*
+SpamDetector/text_example.zip
